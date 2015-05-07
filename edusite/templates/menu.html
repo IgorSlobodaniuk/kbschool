@@ -1,0 +1,33 @@
+<ul class="menu collapsible">
+    {%for menu_dic in menu%}
+        {%for key, value in menu_dic.items %}
+            {% if not value|length_is:"1" %}
+           <li class = 'menuItem'>
+                <a href='#'>{{key}}</a>
+                <ul class='acitem'>
+                {%for i in value %}
+                    <li>
+                        <a class="sublink" href="{{ i.1 }}">{{ i.0 }}</a></li>
+                {%endfor%}
+                </ul>
+            </li>
+            {%else%}
+                <li class = 'menuItem'><a href="{{value.0}}">{{key}}</a></li>
+            {% endif %}
+        {%endfor%}
+    {%endfor%}
+</ul>
+
+<script>
+    $(document).ready(function() {
+        $('.sublink').each(function(e){
+            var link = $(this).attr("href")+'/';
+            var curPath='{{path.request.path}}';
+            if (link == curPath){
+                var $parents = $(this).parent().parent().parent();
+                $parents.children('a').addClass('active');
+                $parents.children('ul').css('display', 'block');
+            };
+        });
+    });
+</script>

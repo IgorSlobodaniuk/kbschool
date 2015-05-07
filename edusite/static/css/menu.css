@@ -1,0 +1,108 @@
+
+ul.menu, ul.menu ul {
+  list-style-type:none;
+  margin: 0;
+  padding: 0;
+  `width: 15em;
+}
+
+ul.menu a {
+  display: block;
+  text-decoration: none;
+  text-align: left;
+}
+
+ul.menu li {
+  margin-top: 1px;
+}
+
+ul.menu li a, ul.menu ul.menu li a {	
+  padding: 0.5em;
+  /* çàêðóãëåííûå óãëû ïóíêòîâ ìåíþ */
+ 
+
+
+
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  color: #d7d7d7;
+  border: solid 1px #333;
+  background: #333;
+  background: -webkit-gradient(linear, left top, left bottom, from(#091D42), to(#396A92));
+  background: -moz-linear-gradient(top,  #091D42,  #396A92);
+  background-image: -o-linear-gradient(top,rgb(102,102,102),rgb(0,0,0));
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#000000');
+}
+
+ul.menu li a:hover, ul.menu ul.menu li a:hover { 
+  background: #000;
+  background: -webkit-gradient(linear, left top, left bottom, from(#3E5910), to(#A1C436));
+  background: -moz-linear-gradient(top,  #3E5910,  #A1C436);
+  background-image: -o-linear-gradient(top,rgb(68,68,68),rgb(0,0,0));
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#444444', endColorstr='#000000');
+}
+
+ul.menu li ul li a, ul.menu ul.menu li ul li a {
+  background: #ccc;
+  color: #000;
+  padding-left: 20px;
+}
+
+ul.menu li ul li a:hover, ul.menu ul.menu li ul li a:hover {
+  background: #aaa;
+  border-left: 5px #000 solid;
+  padding-left: 15px;
+}
+ul.menu ul.menu li a:hover {
+  border-left: 0;
+  padding-left: 0.5em;
+}
+ul.menu ul.menu {
+  border-left: 5px #f00 solid;
+}
+ul.menu a.active, ul.menu ul.menu li a.active, ul.menu a.active:hover, ul.menu ul.menu li a.active:hover {
+  /* ôîí è ãðàäèåíò àêòèâíûõ ïóíêòîâ ìåíþ */
+ 
+
+
+
+  text-decoration: none;
+  color: #00f;
+  border: solid 1px #980c10;
+  background: yellow;
+  background: -webkit-gradient(linear, left top, left bottom, from(#F4E61A), to(#A17619));
+  background: -moz-linear-gradient(top,  #F4E61A,  #A17619);
+  background-image: -o-linear-gradient(top,  #F4E61A,  #A17619);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
+}
+div.panel {
+  border: 1px #000 solid;
+  padding: 5px;
+  margin-top: 1px;
+}
+
+ul.menu div.panel a, ul.menu div.panel li a:hover  {
+  display :inline;
+  color: #666;
+  background: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-weight: bold;
+}
+ul.menu div.panel a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+
+.menuItem{
+  font:  14px Arial;
+  
+}
+
+
+
+
+

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Адміністрація школи - офіційний сайт школи №1 ім. Івана Франка міста Кам’янка Бузька{% endblock %}
+{% block content1 %}
+
+
+
+
+
+<div class='page_title'>Адміністрація школи</div>
+
+{% block dir %} {% endblock %}
+
+{% for name, photo, info in data %}
+
+   <div class='member'>
+   		<img class='photo' src={{photo}}> </img>
+   		<div class='name'>{{name}}</div>
+   		<div class='info'>{{info}}</div>
+   </div>
+
+{% endfor %}
+
+{% endblock %}

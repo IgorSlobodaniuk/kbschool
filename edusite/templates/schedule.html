@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Розклад уроків - офіційний сайт школи №1 ім. Івана Франка міста Кам’янка Бузька{% endblock %}
+{% block content1 %}
+<div style='min-height: 600px;' id='{{ season }}'>
+<div id ='fonAJAX'></div>
+<div id='for_add_shedule'>
+
+</div> 
+		
+{% block dir %} {% endblock %}
+
+<script>
+function loadXMLDoc(url)
+{
+var el = document.getElementById('fonAJAX');
+el.style.display = 'block';
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    el.style.display = 'none';
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET",url,true);
+xmlhttp.send();
+}
+</script>
+
+
+
+<div class='forms_for_select'>
+{% for form_name, url in forms_name %}
+    <button class='sel_form_button' type="button" onclick={{url}}>{{form_name}}</button>
+{% endfor %}
+</div>
+
+
+<div id="myDiv">
+  <div class='page_title'>Розклад уроків
+  </div>
+  <div class='selectSch'>Виберіть клас
+  </div>
+</div>
+
+</div>
+
+
+
+
+{% endblock %}
+
+
+

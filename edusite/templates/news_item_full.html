@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% block title %} Новини {% endblock %}
+{% block content1 %}
+
+{% for pagetitle, sidepicture, content, date_added, photos_directory in data %}
+
+<div class='page_title'> {{pagetitle}} </div>
+{% if super == 'yes' %}
+     <div id="ajaxDiv">
+
+<div id ='fonAJAX'></div>
+<div id="tables">
+
+
+<fieldset>
+  <legend>Додати зображення</legend> 
+<div id='msgDiv'>{{msg_add}} </div>
+<form id='images_add' enctype="multipart/form-data" action="" name='addform' method="post">{% csrf_token %}
+{{ addform }}
+<button class='members_button' type="button" onclick="loadXMLDoc1('/{{code_url}}/', 'ajaxDiv', document.forms.addform)">Додати</button>
+</form>
+</fieldset>
+<fieldset>
+  <legend>Додати зображення з інтернету</legend> 
+<div id='msgDiv2'>{{msg_add2}} </div>
+<form id='images_add' action="" name='addfromnetform' method="post">{% csrf_token %}
+
+{{ addfromnetform }}
+<button class='members_button' type="button" onclick="loadXMLDoc2('/{{code_url_net}}/','ajaxDiv', document.forms.addfromnetform)">Додати</button> 
+</form>
+</fieldset>
+
+    <fieldset>
+    <legend>Видалити зображення</legend> 
+        <div id='msgDiv3'>{{msg}} </div>
+        <form id='images_dell' action="" name='delform' method="post">{% csrf_token %}
+            {{ delform }}
+            <div>
+                {% for img in photos %}
+                    <div class='width_img_bl_for_del'>
+                        <div class="for_del_img"><input type="checkbox" name="checkb_for_del" value={{img}}><img class='miniphotos' src={{img}}></img></div>
+                    </div>
+                {% endfor %}
+            </div> 
+            <div id='delFloat'>
+                <button class='members_button' type="button" onclick="loadXMLDoc3('/{{code_url_del}}/','ajaxDiv', document.forms.delform)">Видалити</button>
+            </div>
+        </form>
+    </fieldset>
+
+</div>
+</div>
+{% endif %}
+<div style='margin: 0 20px;'>
+	<div style='min-height: 200px;'>
+		<img  id='side_photo', src={{sidepicture}}></img>
+		<div  id='news_content'> 
+			{% for p in content %}
+				<p>{{p}}</p>
+			{% endfor %}
+		</div>
+	</div>
+	<div> 
+		{% for photo in photos %}
+			<div style='width:700px; margin: 10px auto;'><img style='width:700px;' src={{photo}}></img></div>
+		{% endfor %}
+	</div>
+	<div  id='news_info'>Додано {{date_added}} </div>
+</div>
+
+
+
+<script>
+function loadXMLDoc1(url, rDiv, form)
+{
+  var el = document.getElementById('fonAJAX');
+  el.style.display = 'block';
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+        m1 = '*Зображення не вибране або має неправильний тип'
+        if (xmlhttp.responseText.length == m1.length){
+            rDiv = 'msgDiv';
+            document.getElementById(rDiv).style.color = 'red'
+            var el = document.getElementById('fonAJAX');
+            el.style.display = 'none';
+        }
+    document.getElementById(rDiv).innerHTML=xmlhttp.responseText;
+    }
+  }
+var formData = new FormData(form); 
+xmlhttp.open("POST",url,true);
+
+xmlhttp.send(formData);
+}
+
+
+
+function loadXMLDoc2(url, rDiv, form)
+{
+var el = document.getElementById('fonAJAX')
+el.style.display = 'block';
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+        var m1 = '*Не вказаний або неправильний URL'
+        var m2 = '*Неможливо відкрити URL'
+        if (xmlhttp.responseText.length == m1.length || xmlhttp.responseText.length == m2.length){
+            rDiv = 'msgDiv2';
+            document.getElementById(rDiv).style.color = 'red'
+            var el = document.getElementById('fonAJAX');
+            el.style.display = 'none';
+        }
+    document.getElementById(rDiv).innerHTML=xmlhttp.responseText;
+    }
+  }
+var formData = new FormData(form); 
+xmlhttp.open("POST",url,true);
+
+xmlhttp.send(formData);
+}
+
+
+
+
+function loadXMLDoc3(url, rDiv, form)
+{
+conf = confirm("Видалити вибрані файли?")
+if(conf == false){
+  return false
+}
+  var el = document.getElementById('fonAJAX');
+  el.style.display = 'block';
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+        var m1 = '*Не вибрано жодного зображення'
+        var m2 = '*Неможливо видалити зображення'
+        if (xmlhttp.responseText.length == m1.length || xmlhttp.responseText.length == m2.length){
+            rDiv = 'msgDiv3';
+            document.getElementById(rDiv).style.color = 'red'
+            var el = document.getElementById('fonAJAX');
+            el.style.display = 'none';
+        }
+    document.getElementById(rDiv).innerHTML=xmlhttp.responseText;
+    }
+  }
+var formData = new FormData(form); 
+xmlhttp.open("POST",url,true);
+
+xmlhttp.send(formData);
+}
+
+
+
+</script>
+
+
+
+{% endfor %}
+
+{% endblock %}

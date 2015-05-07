@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+{% block title %}Електронні підручники - офіційний сайт школи №1 ім. Івана Франка міста Кам’янка Бузька{% endblock %}
+{% block content1 %}
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+	//Default Action
+	$(".tab_content").hide(); //Hide all content
+	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+	$(".tab_content:first").show(); //Show first tab content
+
+	//On Click Event
+	$("ul.tabs li").click(function() {
+		$("ul.tabs li").removeClass("active"); //Remove any "active" class
+		$(this).addClass("active"); //Add "active" class to selected tab
+		$(".tab_content").hide(); //Hide all tab content
+		var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+		$(activeTab).fadeIn(); //Fade in the active content
+		return false;
+	});
+
+});
+</script>
+
+<div class='page_title'>Електронні підручники</div>
+{% block dir %} {% endblock %}
+
+<div id='tutorials'>
+<div class="container">
+
+    <ul class="tabs">
+        <li><a href="#tab5">5 клас</a></li>
+        <li><a href="#tab6">6 клас</a></li>
+        <li><a href="#tab7">7 клас</a></li>
+        <li><a href="#tab8">8 клас</a></li>
+        <li><a href="#tab9">9 клас</a></li>
+        <li><a href="#tab10">10 клас</a></li>
+        <li><a href="#tab11">11 клас</a></li>
+
+    </ul>
+    <div class="tab_container">
+        <div id="tab5" class="tab_content">
+            <h2>Електронні підручники для 5-го класу</h2>
+            <table id='tutorials_table'>
+                <tr class='table_item'>
+                    <th id='head' style='width:200px;'>Назва підручника</td>
+                    <th id='head' style='width:150px;'>Автор</td>
+                    <th id='head' style='width:150px;'>Видавництво</td>
+                    <th id='head' style='width:80px;'>Рік випуску</td>
+                    <th id='empty' style='width:60px; border:none;'></td>
+                    
+                </tr>
+                {% for name, form, author, reproduction_hous, year, url in data %}
+                {% if form = 5 %}
+
+                <tr class='table_item'>
+                    <td>{{name}}</td>
+                    <td>{{author}}</td>
+                    <td >{{reproduction_hous}}</td>
+                    <td>{{year}}</td>
+                    <td class='table_item_download'><div><a href={{url}}>Скачати</a></div></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div id="tab6" class="tab_content">
+            <h2>Електронні підручники для 6-го класу</h2>
+            <table id='tutorials_table'>
+                <tr class='table_item'>
+                    <th id='head' style='width:200px;'>Назва підручника</td>
+                    <th id='head' style='width:150px;'>Автор</td>
+                    <th id='head' style='width:150px;'>Видавництво</td>
+                    <th id='head' style='width:80px;'>Рік випуску</td>
+                    <th id='empty' style='width:60px; border:none;'></td>
+                    
+                </tr>
+                {% for name, form, author, reproduction_hous, year, url in data %}
+                {% if form = 6 %}
+
+                <tr class='table_item'>
+                    <td>{{name}}</td>
+                    <td>{{author}}</td>
+                    <td >{{reproduction_hous}}</td>
+                    <td>{{year}}</td>
+                    <td class='table_item_download'><div><a href={{url}}>Скачати</a></div></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <div id="tab7" class="tab_content">
+            <h2>Електронні підручники для 7-го класу</h2>
+            <table id='tutorials_table'>
+                <tr class='table_item'>
+                    <th id='head' style='width:200px;'>Назва підручника</td>
+                    <th id='head' style='width:150px;'>Автор</td>
+                    <th id='head' style='width:150px;'>Видавництво</td>
+                    <th id='head' style='width:80px;'>Рік випуску</td>
+                    <th id='empty' style='width:60px; border:none;'></td>
+                    
+                </tr>
+                {% for name, form, author, reproduction_hous, year, url in data %}
+                {% if form = 7 %}
+
+                <tr class='table_item'>
+                    <td>{{name}}</td>
+                    <td>{{author}}</td>
+                    <td>{{reproduction_hous}}</td>
+                    <td>{{year}}</td>
+                    <td class='table_item_download'><div><a href={{url}}>Скачати</a></div></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div id="tab8" class="tab_content">
+            <h2>Електронні підручники для 8-го класу</h2>
+            <table id='tutorials_table'>
+                <tr class='table_item'>
+                    <th id='head' style='width:200px;'>Назва підручника</td>
+                    <th id='head' style='width:150px;'>Автор</td>
+                    <th id='head' style='width:150px;'>Видавництво</td>
+                    <th id='head' style='width:80px;'>Рік випуску</td>
+                    <th id='empty' style='width:60px; border:none;'></td>
+                    
+                </tr>
+                {% for name, form, author, reproduction_hous, year, url in data %}
+                {% if form = 8 %}
+
+                <tr class='table_item'>
+                    <td>{{name}}</td>
+                    <td>{{author}}</td>
+                    <td >{{reproduction_hous}}</td>
+                    <td>{{year}}</td>
+                    <td class='table_item_download'><div><a href={{url}}>Скачати</a></div></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div id="tab9" class="tab_content">
+            <h2>Електронні підручники для 9-го класу</h2>
+            <table id='tutorials_table'>
+                <tr class='table_item'>
+                    <th id='head' style='width:200px;'>Назва підручника</td>
+                    <th id='head' style='width:150px;'>Автор</td>
+                    <th id='head' style='width:150px;'>Видавництво</td>
+                    <th id='head' style='width:80px;'>Рік випуску</td>
+                    <th id='empty' style='width:60px; border:none;'></td>
+                    
+                </tr>
+                {% for name, form, author, reproduction_hous, year, url in data %}
+                {% if form = 9 %}
+
+                <tr class='table_item'>
+                    <td>{{name}}</td>
+                    <td>{{author}}</td>
+                    <td >{{reproduction_hous}}</td>
+                    <td>{{year}}</td>
+                    <td class='table_item_download'><div><a href={{url}}>Скачати</a></div></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div id="tab10" class="tab_content">
+            <h2>Електронні підручники для 10-го класу</h2>
+            <table id='tutorials_table'>
+                <tr class='table_item'>
+                    <th id='head' style='width:200px;'>Назва підручника</td>
+                    <th id='head' style='width:150px;'>Автор</td>
+                    <th id='head' style='width:150px;'>Видавництво</td>
+                    <th id='head' style='width:80px;'>Рік випуску</td>
+                    <th id='empty' style='width:60px; border:none;'></td>
+                    
+                </tr>
+                {% for name, form, author, reproduction_hous, year, url in data %}
+                {% if form = 10 %}
+
+                <tr class='table_item'>
+                    <td>{{name}}</td>
+                    <td>{{author}}</td>
+                    <td >{{reproduction_hous}}</td>
+                    <td>{{year}}</td>
+                    <td class='table_item_download'><div><a href={{url}}>Скачати</a></div></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div id="tab11" class="tab_content">
+            <h2>Електронні підручники для 11-го класу</h2>
+            <table id='tutorials_table'>
+                <tr class='table_item'>
+                    <th id='head' style='width:200px;'>Назва підручника</td>
+                    <th id='head' style='width:150px;'>Автор</td>
+                    <th id='head' style='width:150px;'>Видавництво</td>
+                    <th id='head' style='width:80px;'>Рік випуску</td>
+                    <th id='empty' style='width:60px; border:none;'></td>
+                    
+                </tr>
+                {% for name, form, author, reproduction_hous, year, url in data %}
+                {% if form = 11 %}
+
+                <tr class='table_item'>
+                    <td>{{name}}</td>
+                    <td>{{author}}</td>
+                    <td >{{reproduction_hous}}</td>
+                    <td>{{year}}</td>
+                    <td class='table_item_download'><div><a href={{url}}>Скачати</a></div></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+
+            </table>
+        </div>      
+    </div>
+</div>
+
+
+</div>
+{% endblock %}

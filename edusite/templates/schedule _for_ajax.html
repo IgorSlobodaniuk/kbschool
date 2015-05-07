@@ -1,0 +1,72 @@
+<script>
+function loadXMLDoc(url)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET",url,true);
+xmlhttp.send();
+}
+</script>
+
+
+		<div id ='fonAJAX2'></div>
+			<div id="tables">
+			<div class='page_title'>Розклад уроків для {{formlevel}}-{{formversion}} класу </div>
+			<div id='mtw'>
+
+				<div id='monday' class='{{season_style}}'>
+					<div class='day_header'>Понеділок</div>
+					{% for n, s in monday %}
+				<p class='subject'><span class='span_number'>{{n}}</span><span class='span_subject'>{{s}}</span></p>
+				{% endfor %}
+				</div>
+
+				<div id='tuesday' class='{{season_style}}'>
+					<div class='day_header'>Вівторок</div>
+					{% for n, s in tuesday %}
+				<p class='subject'><span class='span_number'>{{n}}</span><span class='span_subject'>{{s}}</span></p>
+				{% endfor %}
+				</div>
+
+				<div id='wednesday' class='{{season_style}}'>
+					<div class='day_header'>Середа</div>
+					{% for n, s in wednesday %}
+				<p class='subject'><span class='span_number'>{{n}}</span><span class='span_subject'>{{s}}</span></p>
+				{% endfor %}
+				</div>
+			</div>
+
+			<div id='tf'>
+
+				<div id='thursday' class='{{season_style}}'>
+					<div class='day_header'>Четвер</div>
+					{% for n, s in thursday %}
+				<p class='subject'><span class='span_number'>{{n}}</span><span class='span_subject'>{{s}}</span></p>
+				{% endfor %}
+				</div>
+
+				<div id='friday' class='{{season_style}}'>
+					<div class='day_header'>П’ятниця</div>
+					{% for n, s in friday %}
+				<p class='subject'><span class='span_number'>{{n}}</span><span class='span_subject'>{{s}}</span></p>
+				{% endfor %}
+				</div>
+
+			</div>
+			</div>
+
+			<div id='stopfloat'></div>

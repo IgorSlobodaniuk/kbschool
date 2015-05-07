@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Корисні посилання - офіційний сайт школи №1 ім. Івана Франка міста Кам’янка Бузька{% endblock %}
+{% block content1 %}
+
+
+<div class='page_title'>Корисні посилання</div>
+{% block dir %} {% endblock %}
+
+
+<div style='margin: 20px;'>
+    <table id='presentation_table'>
+        <tr class='table_item'>
+            <th id='head' style='width:155px;'>Назва</th>
+            <th id='head' style='width:300px;'>Короткий опис</th>
+            <th id='head' style='width:300px;'>Посилання</th>
+        </tr>
+                
+        {% for n, d, l in data %}
+        <tr class='table_item'>
+            <td>{{n}}</td>
+            <td>{{d}}</td>
+            <td><a href={{l}}>{{l}}</a></td>
+        </tr>
+        {% endfor %}
+                
+    </table>
+</div>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,19 @@
+<fieldset>
+  <legend>Видалити зображення</legend> 
+<div id='msgDiv3'>{{msg}} </div>
+<form id='images_dell' action="" name='delform' method="post">{% csrf_token %}
+{{ delform }}
+<div>
+        {% for img in all_imgs %}
+        <div class='width_img_bl_for_del'>
+          <div class="for_del_img"><input type="checkbox" name="checkb_for_del" value={{img}}><img class='miniphotos' src={{img}}></img></div>
+        </div>
+        {% endfor %}
+</div> 
+
+<div id='delFloat'>
+  <button class='members_button' type="button" onclick="loadXMLDoc3('/del_team_photo/','ajaxDiv', document.forms.delform)">Видалити</button>
+  </div>
+
+</form>
+</fieldset>

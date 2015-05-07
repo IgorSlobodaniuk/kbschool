@@ -1,0 +1,13 @@
+
+
+<h3 style='text-align: center; color:green; text-shadow: 0px 1px 1px rgba(0,0,0,0.5); font-family: Arial'>Нові публікації</h3>
+{% for title, code, date in title_and_date %}
+
+
+	<div  id='news_info' style='color:green';>{{date}}</div>
+	<div  id='news_title'><a style='color:#000; text-decoration: none; font-style: italic; font-size: 15px;' href=/news_{{code}}/>{{title}}</a></div>
+
+	
+
+{% endfor %}
+<div style='text-align: right; margin: 3px;'><a style='color:#000; font-size: 13px;  text-decoration: none; font-style: italic;' href='/news/'>Переглянути всі публікації</a></div>

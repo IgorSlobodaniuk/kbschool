@@ -1,0 +1,9 @@
+{{msg}}
+<form id='images_dell' action="" name='delform' method="post">{% csrf_token %}
+{{ delform }}
+<div>
+        {% for img in all_imgs %}
+          <div class="for_del_img"><input type="checkbox" name="checkb_for_del" value={{img}}><img class='miniphotos' src={{img}}></img></div>
+        {% endfor %}
+</div> 
+</form>

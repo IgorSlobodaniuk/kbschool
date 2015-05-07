@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Колектив школи - офіційний сайт школи №1 ім. Івана Франка міста Кам’янка Бузька{% endblock %}
+{% block content1 %}
+
+<div id ='fonAJAX'></div>
+
+<script>
+function loadXMLDoc2(url)
+{
+var el = document.getElementById('fonAJAX');
+el.style.display = 'block';
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    el.style.display = 'none';
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET",url,true);
+xmlhttp.send();
+}
+</script>
+
+
+
+
+{% block dir %} {% endblock %}
+
+
+<div class='forms_for_select'>
+	<button class='kafedra_button' type="button" onclick=loadXMLDoc2('/team/kaf=математики,_інформатики_та_фізики/')>Вчителі математики, інформатики та фізики</button>
+
+	<button class='kafedra_button' type="button" onclick=loadXMLDoc2('/team/kaf=історії')>Вчителі історії</button>
+
+  <button class='kafedra_button' type="button" onclick=loadXMLDoc2('/team/kaf=української_мови_та_літератури')>Вчителі української мови та літератури</button>
+
+  <button class='kafedra_button' type="button" onclick=loadXMLDoc2('/team/kaf=початкових_класів')>Вчителі початкових класів</button>
+
+  <button class='kafedra_button' type="button" onclick=loadXMLDoc2('/team/kaf=іноземних_мов_та_світової_літератури')>Вчителі іноземних мов та світової літератури</button>
+
+  <button class='kafedra_button' type="button" onclick=loadXMLDoc2('/team/kaf=геграфії,_біології_та_хімії')>Вчителі геграфії, біології та хімії</button>
+
+  <button class='kafedra_button' type="button" onclick=loadXMLDoc2('/team/kaf=фізкультури,_технології_та_музики')>Вчителі фізкультури, технології та музики</button>
+
+</div>
+
+<div id="myDiv">
+  <div class='page_title'>Колектив школи
+  </div>
+  <div class='selectSch'>Виберіть кафедру
+  </div>
+</div>
+
+
+{% endblock %}

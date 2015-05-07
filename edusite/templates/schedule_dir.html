@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% block title %}Розклад занять{% endblock %}
+{% block content1 %}
+    
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" /> 
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+<script type="text/javascript" src="/static/JS/JavaScriptAutoComplete.js"></script>
+		
+
+<div class='page_title'>Керування розкладом</div>
+<div id ='fonAJAX'></div>
+<div id="tables">
+<fieldset>
+  <legend>Додати предмет
+  </legend> 
+
+<div id="addDiv"></div>
+
+<form class="schedule_form" action="" name='addform' method="post">{% csrf_token %}
+{{ form }}
+<button class='schedule_button' type="button" onclick="loadXMLDoc('/schedule_add/','addDiv', document.forms.addform)">Додати</button>
+</form>
+</fieldset>
+
+
+<fieldset>
+  <legend>Видалити предмет
+  </legend> 
+
+<div id="delDiv"></div>
+
+<form class="schedule_form" action="" name='delform' method="post">{% csrf_token %}
+{{ form_del }}
+<button class='schedule_button' type="button" onclick="loadXMLDoc('/schedule_del/', 'delDiv', document.forms.delform)">Видалити</button>
+</form>
+</fieldset>
+
+
+
+
+<fieldset>
+  <legend>Додати клас
+  </legend> 
+
+<div id="add_forms_Div"></div>
+
+<form class="schedule_form_add" action="" name='add_forms_name' method="post">{% csrf_token %}
+{{ form_add_forms }}
+<button class='schedule_button' type="button" onclick="loadXMLDoc('/schedule_add_forms/', 'add_forms_Div', document.forms.add_forms_name)">Додати</button>
+</form>
+</fieldset>
+
+
+
+<fieldset>
+  <legend>Видалити клас
+  </legend> 
+<div id="del_forms_Div"></div>
+<form class="schedule_form" action="" name='del_forms_name' method="post">{% csrf_token %}
+{{ form_del_forms }}
+<button class='schedule_button' type="button" onclick="loadXMLDoc('/schedule_del_forms/', 'del_forms_Div', document.forms.del_forms_name)">Видалити</button>
+</form>
+</fieldset>
+
+
+
+<fieldset>
+  <legend>Видалити всі класи
+  </legend> 
+<div id="del_all_forms_Div"></div>
+<div><button class="del_all_button" type="button" onclick="loadXMLDoc3('/schedule_del_forms_all/', 'del_all_forms_Div')">Видалити всі класи</button></div>
+</fieldset>
+
+
+<fieldset>
+  <legend>Очистити розклад
+  </legend> 
+
+
+
+
+<div id="del_all_Div"></div>
+<div><button class="del_all_button" type="button" onclick="loadXMLDoc3('/schedule_del_all/', 'del_all_Div')">Очистити розклад</button></div>
+</fieldset>
+
+<div>
+<div class='forms_for_select'>
+{% for form_name, url in forms_name %}
+    <button class='sel_form_button' type="button" onclick={{url}}>{{form_name}}</button>
+{% endfor %}
+</div>
+</div>
+<div id="myDiv">
+  <div class='page_title'>Розклад уроків
+  </div>
+  <div class='selectSch'>Виберіть клас
+  </div>
+
+</div>
+</div>
+
+<div id='for_add_shedule'> </div> 
+    
+
+
+<script>
+function loadXMLDoc(url, rDiv, form)
+{
+  var el = document.getElementById('fonAJAX');
+  el.style.display = 'block';
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      var el = document.getElementById('fonAJAX');
+      el.style.display = 'none';
+      document.getElementById(rDiv).innerHTML=xmlhttp.responseText;
+    }
+  }
+var formData = new FormData(form); 
+xmlhttp.open("POST",url,true);
+
+xmlhttp.send(formData);
+}
+
+
+
+function loadXMLDoc2(url)
+{
+var el = document.getElementById('fonAJAX');
+el.style.display = 'block';
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    var el = document.getElementById('fonAJAX');
+    el.style.display = 'none';
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET",url,true);
+xmlhttp.send();
+}
+
+
+function loadXMLDoc3(url, rDiv)
+{
+  
+conf = confirm("Видалити все?")
+if(conf == false){
+  return false
+} 
+var el = document.getElementById('fonAJAX');
+el.style.display = 'block';
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    var el = document.getElementById('fonAJAX');
+    el.style.display = 'block';
+    document.getElementById(rDiv).innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET",url,true);
+xmlhttp.send();
+}
+
+
+</script>
+
+{% endblock %}
+
+
+

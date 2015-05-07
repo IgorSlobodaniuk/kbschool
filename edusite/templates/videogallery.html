@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Відеогалерея - офіційний сайт школи №1 ім. Івана Франка міста Кам’янка Бузька{% endblock %}
+{% block content1 %}
+
+
+
+
+<div class='page_title'>Відеогалерея</div>
+
+{% block dir %} {% endblock %}
+
+<div>
+	{% if videos %}
+	    {% for videoname, url in videos %}
+	    <div class='videoname'>{{videoname}}</div>
+	    <div class='videoblock'><iframe width="640" height="480" src={{url}} frameborder="0" allowfullscreen></iframe></div>
+		{% endfor %}
+	{% else %}
+		<div class='empty_gallery'>Відеогалерея порожня</div>
+	{% endif %}
+
+</div>
+
+
+
+
+
+{% endblock %}
+

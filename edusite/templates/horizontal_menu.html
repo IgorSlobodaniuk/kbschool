@@ -1,0 +1,24 @@
+
+
+<ul id="nav">
+    {%for menu_dic in menu%}
+        {%for key, value in menu_dic.items %}
+            {% if not value|length_is:"1" %}
+                <li class="top">
+                    <a href='#' class="top_link"><div style='max-width: 75px; height: 30px; display: table-cell; vertical-align:middle; text-align: center;'>{{key}}</div></a>
+                    <ul class="sub">
+                    {%for i in value %}
+                        <li><a class="sublink" href="{{ i.1 }}"><div>{{ i.0 }}</div></a></li>
+                    {%endfor%}
+                    </ul>
+                </li>
+                {%else%}
+                <li><a href="{{value.0}}" class="top_link"><div style='max-width: 75px; height: 30px; display: table-cell; vertical-align:middle; text-align: center;' >{{key}}</div></a></li>
+                {% endif %}
+        {%endfor%}
+    {%endfor%}
+</ul>
+
+
+
+  

@@ -1,0 +1,55 @@
+        {% if aunt == True %}
+            <a style='text-decoration: none;' href="/logout/"><div id='logoutButton'>Вийти</div></a>
+        {% else %}
+            <div id="loginContainer">
+                <a href="#" id="loginButton"><span></span><em></em></a>
+                <div style="clear:both"></div>
+                <div id="loginBox">
+                    <form id="loginForm" name="login" action='.' method='Post'>{% csrf_token %}
+                              
+                        <fieldset id="body">
+                            {{ lform }} 
+                             <div id='msgDiv' style='color:red;'></div>
+                            <button id="login" type="button" onclick="loadXMLDoc('/login/','msgDiv', document.forms.login)">Вхід</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+
+
+
+
+<script>
+function loadXMLDoc(url, rDiv, form)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+        m1 = '*Неправильний логін або пароль'
+        if (xmlhttp.responseText.length == m1.length){
+            rDiv = 'msgDiv';
+        }
+        else{
+            document.location.replace("/index/");
+        }
+    document.getElementById(rDiv).innerHTML=xmlhttp.responseText;
+    }
+  }
+var formData = new FormData(form); 
+xmlhttp.open("POST",url,true);
+
+xmlhttp.send(formData);
+}
+
+</script>

@@ -1,0 +1,60 @@
+{% extends 'presentation.html' %}
+{% block dir %}
+
+
+
+
+<fieldset>
+  <div class='h3'><h3>Керування презентаціями</h3></div>
+<fieldset>
+   <legend>Додати презентацію</legend>
+<div id="addDiv"></div>
+<form id='presentation_add' action="" name='addform' method="post">{% csrf_token %}
+{{ addform }}
+<button class='members_button' type="button" onclick="loadXMLDoc('/add_presentation/','addDiv', document.forms.addform)">Додати</button>
+</form>
+</fieldset>
+
+<fieldset>
+  <legend>Видалити презентацію</legend>
+<div id="delDiv"></div>
+<form id='presentation_del' action="" name='delform' method="post">{% csrf_token %}
+{{ delform }}
+<button class='members_button' type="button" onclick="loadXMLDoc('/del_presentation/','delDiv', document.forms.delform)">Видалити</button>
+</form>
+</fieldset>
+
+</fieldset>
+
+
+<script>
+function loadXMLDoc(url, rDiv, form)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById(rDiv).innerHTML=xmlhttp.responseText;
+    }
+  }
+var formData = new FormData(form); 
+xmlhttp.open("POST",url,true);
+
+xmlhttp.send(formData);
+}
+
+</script>
+
+
+
+
+{% endblock %}

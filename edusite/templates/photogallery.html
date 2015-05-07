@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Фотогалерея - офіційний сайт школи №1 ім. Івана Франка міста Кам’янка Бузька{% endblock %}
+{% block content1 %}
+
+<link type="text/css" href="/static/css/prettyPhoto.css" rel="stylesheet" />
+<script src="/static/JS/jquery.prettyPhoto.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    <!--
+    $(function(){
+      $("#lightBox a[rel^='prettyPhoto']").prettyPhoto({
+      	theme: 'dark_rounded'
+      });
+    });
+    -->
+</script>
+
+
+<div class='page_title'>Фотогалерея</div>
+<div id='photos'>
+    <div id="lightBox"> 
+    	{% if img_link %}
+            {% for min, max, title in img_link %}
+                <a style='text-decoration: none;' rel="prettyPhoto[mixed]" href={{max}} title={{title}}><img src={{min}}> </a>
+            {% endfor %}
+        {% else %}
+            <div class='empty_gallery'>Фотогалерея порожня</div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+

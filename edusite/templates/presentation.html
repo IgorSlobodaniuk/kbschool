@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Галерея - офіційний сайт школи №1 ім. Івана Франка міста Кам’янка Бузька{% endblock %}
+{% block content1 %}
+
+
+
+
+<div class='page_title'>Презентації</div>
+
+{% block dir %} {% endblock %}
+
+<div style='margin: 20px;'>
+	<table id='presentation_table'>
+        <tr class='table_item'>
+            <th id='head' style='width:200px;'>Назва презентації</th>
+            <th id='head' style='width:410px;'>Короткий опис</th>
+            <th id='empty' style='width:60px; border:none;'></th>
+        </tr>
+                
+        {% for n, d, l in pr %}
+        <tr class='table_item'>
+            <td>{{n}}</td>
+            <td>{{d}}</td>
+            <td class='table_item_download'><div><a href={{l}}>Скачати</a></div></td>
+        </tr>
+        {% endfor %}
+                
+    </table>
+</div>
+
+
+
+
+
+{% endblock %}
+

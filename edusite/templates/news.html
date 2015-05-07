@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Новини - офіційний сайт школи №1 ім. Івана Франка міста Кам’янка Бузька{% endblock %}
+{% block content1 %}
+
+<div class='page_title'>Новини</div>
+
+{% block n %}{% endblock %}
+{% for code, title, sp, content, ph_dir, date in data %}
+
+<div id='news_element'>
+	<div  id='news_title'><a style='text-decoration:none; color: #000;' href=/news_{{code}}/>{{title}}</a></div>
+	<div>
+		<img src={{sp}} id='side_photo'></img>
+		<div  id='news_content'>
+			{% for p in content %}
+				<p>{{p}}</p>
+			{% endfor %}
+		</div>
+	</div>
+	<div id='news_read_more'><a href=/news_{{code}}/>Читати далі</a></div>
+	<div  id='news_info'>Додано {{date}}</div>
+</div>
+
+{% endfor %}
+
+{% endblock %}
